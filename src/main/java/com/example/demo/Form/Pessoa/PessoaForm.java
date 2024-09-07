@@ -2,6 +2,9 @@ package com.example.demo.Form.Pessoa;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.example.demo.Model.Deficiencia;
 import com.example.demo.Model.Pessoa;
 import jakarta.validation.constraints.NotBlank;
@@ -24,6 +27,7 @@ public class PessoaForm {
 
     @NotNull(message = "Preencha o campo data de nascimento.")
     @Past(message = "A data de nascimento deve ser uma data do passado.")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate nascimento;
 
     @NotNull(message = "Preencha o campo sexo.")
@@ -46,5 +50,17 @@ public class PessoaForm {
 
     public PessoaForm(Pessoa pessoa){
         this.nome = pessoa.getNome();
+        this.nascimento = pessoa.getNascimento();
+        this.sexo = pessoa.getSexo().getCodigo();
+
+        this.deficiencia = pessoa.getDeficiencia();
+        this.cep = pessoa.getEndereco().getCep();
+
+        this.uf = pessoa.getEndereco().getEstado().getSigla();
+        this.cidade = pessoa.getEndereco().getCidade().getNome();
+        this.bairro = pessoa.getEndereco().getBairro().getNome();
+        this.logradouro = pessoa.getEndereco().getLogradouro();
+        this.numero = pessoa.getEndereco().getNumero();
+        this.complemento = pessoa.getEndereco().getComplemento();
     }
 }

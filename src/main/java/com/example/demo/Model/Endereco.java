@@ -32,4 +32,12 @@ public class Endereco {
     @ManyToOne
     @JoinColumn(name = "bairro_id")
     private Bairro bairro;
+
+    public Estado getEstado(){
+        return bairro.getCidade().getEstado();
+    }
+
+    public Cidade getCidade(){
+        return bairro.getCidade();
+    }
 }
