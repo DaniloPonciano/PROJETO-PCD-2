@@ -11,10 +11,12 @@ public class Acesso {
             strategy = GenerationType.IDENTITY
     )
     private Long id;
+
     @Column(
             nullable = false
     )
     private String ip;
+
     @Column(
             nullable = false
     )
@@ -27,6 +29,7 @@ public class Acesso {
             name = "usuario_id"
     )
     private Usuario usuario;
+    
     public Long getId() {
         return this.id;
     }

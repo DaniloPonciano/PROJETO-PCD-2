@@ -123,11 +123,7 @@ public class PessoaController {
 
         pessoaService.update(pessoaForm, id);
 
-        // Pessoa pessoa = pessoaForm.toEntity();
-        // pessoa.setId(id);
-
         redirectAttributes.addFlashAttribute("successMessage", "Alterado com sucesso!");
-        // this.pessoaRepository.save(pessoa);
 
         return "redirect:/pessoa";
     }
