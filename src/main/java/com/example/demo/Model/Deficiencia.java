@@ -15,6 +15,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 @Getter
 @Setter
@@ -29,6 +31,10 @@ public class Deficiencia {
 
     @Column(nullable = false)
     private String nome;
+
+    @Column(name = "ativo", nullable = false)
+    @ColumnDefault("true")
+    private boolean ativo = true;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")

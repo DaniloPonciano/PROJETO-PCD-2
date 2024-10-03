@@ -6,7 +6,7 @@
         <form th:action="@{/deficiencia/create}" th:object="${deficienciaForm}" method="post">
                 <div class="card mt-2">
                     <div class="card-header">
-                        <h3 class="card-title">Formulário de Cadastro Deficiência</h3>
+                        <h3 class="card-title">Formulário de Criação</h3>
                     </div>
                     <div class="card-body">                           
                         <div class="row">
@@ -14,90 +14,28 @@
                                 <label for="nome" class="form-label">Nome:</label>
                                 <input type="text" id="nome" placeholder="Ex.: João dos Exemplos" th:field="*{nome}" class="form-control">
                                 <div th:if="${errors != null && #fields.hasErrors('nome')}" th:errors="*{nome}"></div>
-                            </div>                        
+                            </div>
+                            
                             <div class="mb-3 col-md-3">
-                                <label for="deficiencia" class="form-label">Deficiência:</label>
-                                <input type="text" id="deficiencia" placeholder="Ex.: TDAH" th:field="*{deficiencia}" class="form-control">
-                                <div th:if="${errors != null && #fields.hasErrors('nome')}" th:errors="*{deficiencia}"></div>
-                                <select id="deficiencia" class="form-select" th:field="*{deficiencia}">
-                                    <option th:each="deficiencia : *{listDeficiencias}"
-                                        th:value="${deficiencia.id}"
-                                        th:text="${deficiencia.nome}">
+                                <label for="categoria" class="form-label">Categoria:</label>
+                                <select id="categoria" class="form-select" th:field="*{categoria}">
+                                    <option th:each="categoria : *{listCategorias}"
+                                        th:value="${categoria.id}"
+                                        th:text="${categoria.nome}">
                                     </option>                    
                                 </select>
                             </div>
-                            <div class="mb-3 col-md-3">
-                                <label for="cep" class="form-label">CEP:</label>
-                                <input id="cep" type="text" class="form-control" placeholder="99999-999" 
-                                th:field="*{cep}">
-                            </div>
-                            <div class="mb-2 col-md-2">
-                                <label for="uf" class="form-label">UF:</label>
-                                <input id="uf" readonly class="form-control" th:field="*{uf}">
-                            </div>
-                            <div class="mb-2 col-md-2">
-                                <label for="cidade" class="form-label">Cidade:</label>
-                                <input id="cidade" readonly class="form-control" th:field="*{cidade}">
-                            </div>
-                            <div class="mb-2 col-md-2">
-                                <label for="bairro" class="form-label">Bairro:</label>
-                                <input id="bairro" readonly class="form-control" th:field="*{bairro}">
-                            </div>
-                            <div class="mb-2 col-md-6">
-                                <label for="logradouro" class="form-label">Logradouro:</label>
-                                <input id="logradouro" readonly class="form-control" th:field="*{logradouro}">
-                            </div>
-                            <div class="mb-2 col-md-2">
-                                <label for="numero" class="form-label">Número:</label>
-                                <input id="numero"  class="form-control" th:field="*{numero}">
-                            </div>
-                            <div class="mb-2 col-md-10">
-                                <label for="complemento" class="form-label">Complemento:</label>
-                                <input id="complemento"  class="form-control" th:field="*{complemento}">
-                            </div>
+                        
                     
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <a href="/pessoa" class="btn btn-secondary">Voltar</a>
+                        <a href="/deficiencia" class="btn btn-secondary">Voltar</a>
                         <button class="btn btn-success" type="submit">Salvar</button>
                     </div>
                 </div>
             </div>    
         </form>
-        <script>
-            $("#cep").inputmask("99999-999")
-            .on('change', function(){
-                let cep = $("#cep").val();
-                cep.replace("-", "");
-
-                $.ajax({
-                    dataType: "json",
-                    type: "get",
-                    url: "https://viacep.com.br/ws/" + cep + "/json/",
-                    success: function(response){
-                        if(!response['erro']){   
-                            if(response['bairro'] == ""){
-                                $("#bairro").attr("readonly", false);
-                            }else{
-                                $("#bairro").attr("readonly", true);
-                                document.getElementById("bairro").value = response['bairro'];
-                            }                                
-                            
-                            if(response['logradouro'] == ""){
-                                $("#logradouro").attr("readonly", false);
-                            }else{
-                                $("#logradouro").attr("readonly", true);
-                                $("#logradouro").val(response['logradouro']);
-                            }
-
-                            $("#cidade").val(response['localidade']);
-                            $("#uf").val(response['uf']);                       
-                        }                        
-                    }
-                });                
-            });
         
-        </script>
     </body>
 </html>
