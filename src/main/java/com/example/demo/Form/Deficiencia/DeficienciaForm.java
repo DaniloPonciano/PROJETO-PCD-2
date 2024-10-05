@@ -1,4 +1,4 @@
-package com.example.demo.Form.Pessoa;
+package com.example.demo.Form.Deficiencia;
 
 import java.util.List;
 

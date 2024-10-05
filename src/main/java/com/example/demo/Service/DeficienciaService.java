@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.Form.Pessoa.DeficienciaForm;
+import com.example.demo.Form.Deficiencia.DeficienciaForm;
 import com.example.demo.Model.Deficiencia;
 import com.example.demo.Repository.DeficienciaRepository;
 
